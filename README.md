@@ -19,7 +19,7 @@ potential speed up the initial page load, but it should also result in bandwidth
 
 ![pastedimage 2](https://cloud.githubusercontent.com/assets/10474169/10761615/2e516cde-7c90-11e5-9869-126b67b1f862.png)
 
-    function configure($stateProvider) {
+function configure($stateProvider) {
         $stateProvider
             .state('adminHome', {
                 url: '/',
@@ -37,9 +37,11 @@ potential speed up the initial page load, but it should also result in bandwidth
                 templateUrl: '/Scripts/app/modules/candidate/views/onBoardingApp.candidate.html',
                 resolve: {
                     allCandidates: function ($ocLazyLoad) {
+                        // You can include $ocLazyLoad and use the function load which returns a promise. It supports                         //   a single dependency or multiple dependencies (array).
                         return $ocLazyLoad.load([{
                             name: 'onBoardingApp.candidate',
                             files: ['/Scripts/app/modules/candidate/onBoardingApp.candidate.js'],
+                            // You can define optional parameters to each module.
                             // {cache: false, timeout: 5000}
                             cache: false
                         }, {
@@ -60,3 +62,4 @@ potential speed up the initial page load, but it should also result in bandwidth
             return homeService.getAllSecondaryCandidates();
         }
     };
+
