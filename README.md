@@ -40,6 +40,7 @@ function configure($stateProvider) {
                         return $ocLazyLoad.load([{
                             name: 'onBoardingApp.candidate',
                             files: ['/Scripts/app/modules/candidate/onBoardingApp.candidate.js'],
+                            // {cache: false, timeout: 5000}
                             cache: false
                         }, {
                             name: 'onBoardingApp.candidate.controllers',
