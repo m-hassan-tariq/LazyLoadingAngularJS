@@ -37,12 +37,9 @@ function configure($stateProvider) {
                 templateUrl: '/Scripts/app/modules/candidate/views/onBoardingApp.candidate.html',
                 resolve: {
                     allCandidates: function ($ocLazyLoad) {
-                        // You can include $ocLazyLoad and use the function load which returns a promise. It supports                   
                         return $ocLazyLoad.load([{
                             name: 'onBoardingApp.candidate',
                             files: ['/Scripts/app/modules/candidate/onBoardingApp.candidate.js'],
-                            // You can define optional parameters to each module.
-                            // {cache: false, timeout: 5000}
                             cache: false
                         }, {
                             name: 'onBoardingApp.candidate.controllers',
