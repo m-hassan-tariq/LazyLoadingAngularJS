@@ -18,3 +18,63 @@ potential speed up the initial page load, but it should also result in bandwidth
 
 
 ![pastedimage 2](https://cloud.githubusercontent.com/assets/10474169/10761615/2e516cde-7c90-11e5-9869-126b67b1f862.png)
+
+'use strict';
+
+(function () {
+
+    angular
+        .module('onBoardingApp')
+        .config(configure)
+        .run(runBlock);
+
+    runBlock.$inject = ['$state'];
+    configure.$inject = ['$stateProvider'];
+
+    function runBlock($state) {
+        $state.go('adminHome');
+    };
+
+    function configure($stateProvider) {
+        $stateProvider
+            .state('adminHome', {
+                url: '/',
+                controller: 'HomeController',
+                controllerAs: 'vm',
+                templateUrl: '/Scripts/app/modules/home/views/onBoardingApp.home.html',
+                resolve: {
+                    getSecondaryCandidateService: getSecondaryCandidateService
+                }
+            })
+            .state('allCandidates', {
+                url: '/candidates',
+                controller: 'CandidateController',
+                controllerAs: 'vm',
+                templateUrl: '/Scripts/app/modules/candidate/views/onBoardingApp.candidate.html',
+                resolve: {
+                    allCandidates: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([{
+                            name: 'onBoardingApp.candidate',
+                            files: ['/Scripts/app/modules/candidate/onBoardingApp.candidate.js'],
+                            // {cache: false, timeout: 5000}
+                            cache: false
+                        }, {
+                            name: 'onBoardingApp.candidate.controllers',
+                            files: ['/Scripts/app/modules/candidate/js/onBoardingApp.candidate.controller.js'],
+                            cache: false
+                        },
+                        {
+                            name: 'onBoardingApp.candidate.services',
+                            files: ['/Scripts/app/modules/candidate/js/onBoardingApp.candidate.services.js'],
+                            cache: false
+                        }]);
+                    }
+                }
+            });
+
+        function getSecondaryCandidateService(homeService) {
+            return homeService.getAllSecondaryCandidates();
+        }
+    };
+
+})();
