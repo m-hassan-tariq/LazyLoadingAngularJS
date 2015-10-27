@@ -19,9 +19,6 @@ potential speed up the initial page load, but it should also result in bandwidth
 
 ![pastedimage 2](https://cloud.githubusercontent.com/assets/10474169/10761615/2e516cde-7c90-11e5-9869-126b67b1f862.png)
 
-'use strict';
-
-(function () {
 
     angular
         .module('onBoardingApp')
@@ -77,4 +74,3 @@ potential speed up the initial page load, but it should also result in bandwidth
         }
     };
 
-})();
