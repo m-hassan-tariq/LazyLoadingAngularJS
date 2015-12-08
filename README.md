@@ -1,4 +1,4 @@
-# LazyLoadingAngularJS
+# Lazy Loading in AngularJS
 Lazy Registration of modules of AngularJS for large scale application
 
 When building large sites or apps with many routes/views in AngularJS, it would be good to not have to load all artefacts
